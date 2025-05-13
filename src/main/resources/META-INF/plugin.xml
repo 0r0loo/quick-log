@@ -1,6 +1,6 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.blue.bluelog</id>
+    <id>com.blue.quicklog</id>
     <name>Blue log</name>
     <vendor>0r0loo</vendor>
 
@@ -9,8 +9,8 @@
     </description>
 
     <actions>
-        <action id="com.blue.bluelog.actions.BlueLogAction"
-                class="com.blue.bluelog.actions.BlueLogAction"
+        <action id="com.blue.quicklog.actions.QuickLogAction"
+                class="com.blue.quicklog.actions.QuickLogAction"
                 text="Quick Log"
                 description="Insert styled console.log for selected variable">
             <keyboard-shortcut keymap="$default" first-keystroke="alt L"/>

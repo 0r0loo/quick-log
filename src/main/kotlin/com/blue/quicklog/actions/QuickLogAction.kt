@@ -1,4 +1,4 @@
-package com.blue.bluelog.actions
+package com.blue.quicklog.actions
 
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
@@ -13,7 +13,7 @@ import com.intellij.openapi.util.TextRange
  * 이 액션은 에디터에서 선택된 텍스트를 console.log에 감싸서 현재 라인과 동일한 들여쓰기 레벨에 삽입합니다.
  * 선택된 텍스트가 없는 경우 "variableName"이라는 텍스트와 함께 커서 위치에 로그문을 삽입합니다.
  */
-class BlueLogAction: AnAction() {
+class QuickLogAction: AnAction() {
     
     /**
      * 액션이 수행될 때 호출되는 메인 메서드입니다.
