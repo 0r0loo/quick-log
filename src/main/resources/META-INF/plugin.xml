@@ -1,11 +1,11 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.blue.quicklog</id>
-    <name>Blue log</name>
+    <id>com.0r0loo.quicklog</id>
+    <name>Quick log</name>
     <vendor>0r0loo</vendor>
 
     <description>
-        Quick Log 는 선택한 변수나 텍스트를 스타일링된 console.log 로 빠르게 삽입해주는 JetBrains IDE용 플러그인입니다.
+        Quick Log 는 선택한 변수나 텍스트를 스타일링된 console.log 로 빠르게 삽입해주는 JetBrains IDE 용 플러그인입니다.
     </description>
 
     <depends>com.intellij.modules.platform</depends>
