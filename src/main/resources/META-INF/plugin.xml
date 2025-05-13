@@ -8,6 +8,18 @@
         Quick Log 는 선택한 변수나 텍스트를 스타일링된 console.log 로 빠르게 삽입해주는 JetBrains IDE용 플러그인입니다.
     </description>
 
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- 설정 클래스 등록 -->
+        <applicationService serviceImplementation="com.blue.quicklog.settings.QuickLogSettingsState"/>
+        <applicationConfigurable 
+            parentId="tools" 
+            instance="com.blue.quicklog.settings.QuickLogSettingsConfigurable" 
+            id="com.blue.quicklog.settings.QuickLogSettingsConfigurable" 
+            displayName="Quick Log Settings"/>
+    </extensions>
+
     <actions>
         <action id="com.blue.quicklog.actions.QuickLogAction"
                 class="com.blue.quicklog.actions.QuickLogAction"
