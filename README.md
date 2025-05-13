@@ -1,7 +1,7 @@
 # Quick Log
 
 ![Build](https://img.shields.io/github/actions/workflow/status/0r0loo/quick-log/build.yml?branch=main)
-![Version](https://img.shields.io/badge/version-2.1.0-blue)
+![Version](https://img.shields.io/badge/version-0.0.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 <!-- Plugin description -->
