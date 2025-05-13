@@ -1,15 +1,17 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-    <name>IntelliJ Platform Plugin Template</name>
-    <vendor>JetBrains</vendor>
+    <id>com.0r0loo.quick-log</id>
+    <name>Quick log</name>
+    <vendor>0r0loo</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
-
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <description>
+        Quick Log 는 선택한 변수나 텍스트를 스타일링된 console.log 로 빠르게 삽입해주는 JetBrains IDE용 플러그인입니다.
+    </description>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="org.jetbrains.plugins.template.startup.MyProjectActivity" />
+        <action id="QuickLogAction"
+                class="com.0r0loo.quick-log.QuickLogAction"
+                text="Quick Log"
+                description="Insert styled console.log for selected variable"/>
     </extensions>
 </idea-plugin>
