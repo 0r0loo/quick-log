@@ -5,7 +5,7 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 <!-- Plugin description -->
-Quick Log는 선택한 변수나 텍스트를 스타일링된 console.log로 빠르게 삽입해주는 JetBrains IDE 용 플러그인입니다.
+Quick Log is a JetBrains IDE plugin that helps you insert styled console.log statements quickly. It supports multi-cursor functionality, includes file name and line number in output, and streamlines debugging for JavaScript/TypeScript developers.
 <!-- Plugin description end -->
 
 ## 기능

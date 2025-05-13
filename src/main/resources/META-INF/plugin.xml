@@ -3,22 +3,17 @@
     <id>com.0r0loo.quicklog</id>
     <name>Quick Log</name>
     <vendor>0r0loo</vendor>
-
-    <description><![CDATA[
-        Quick Log is a JetBrains IDE plugin that helps you insert styled console.log statements for selected variables quickly.
-        It automatically includes file name and line number information to make debugging easier and more efficient.
-        The plugin supports multi-cursor functionality for faster coding and debugging workflow.
-    ]]></description>
-
+    <description>
+        <p>Quick Log is a JetBrains IDE plugin that helps you insert styled console.log statements for selected variables quickly. It includes file name and line number to make debugging easier and supports multi-cursor functionality.</p>
+    </description>
     <depends>com.intellij.modules.platform</depends>
-
     <extensions defaultExtensionNs="com.intellij">
-        <!-- 설정 클래스 등록 -->
+        <!-- Configuration classes -->
         <applicationService serviceImplementation="com.blue.quicklog.settings.QuickLogSettingsState"/>
-        <applicationConfigurable 
-            parentId="tools" 
-            instance="com.blue.quicklog.settings.QuickLogSettingsConfigurable" 
-            id="com.blue.quicklog.settings.QuickLogSettingsConfigurable" 
+        <applicationConfigurable
+            parentId="tools"
+            instance="com.blue.quicklog.settings.QuickLogSettingsConfigurable"
+            id="com.blue.quicklog.settings.QuickLogSettingsConfigurable"
             displayName="Quick Log Settings"/>
     </extensions>
 
