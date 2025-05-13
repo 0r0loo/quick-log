@@ -4,71 +4,77 @@
 ![Version](https://img.shields.io/badge/version-0.0.1-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+*Read this in [Korean (한국어)](README_KO.md)*
+
 <!-- Plugin description -->
 Quick Log is a JetBrains IDE plugin that helps you insert styled console.log statements quickly. It supports multi-cursor functionality, includes file name and line number in output, and streamlines debugging for JavaScript/TypeScript developers.
 <!-- Plugin description end -->
 
-## 기능
+## Features
 
-Quick Log 플러그인은 자바스크립트/타입스크립트 코드 작성 시 디버깅을 위한 console.log 문을 손쉽게 추가할 수 있는 기능을 제공합니다:
+Quick Log plugin provides an easy way to add console.log statements for debugging JavaScript/TypeScript code:
 
-- 변수 선택 후 단축키를 누르면 스타일링된 console.log 문 자동 삽입
-- 현재 파일 이름과 라인 번호를 포함한 형식으로 출력
-- 선택 없이 단축키를 누르면 멀티 커서를 활용한 템플릿 로그 삽입
-- 들여쓰기 자동 유지
+- Auto-insert styled console.log statements after selecting a variable
+- Include current file name and line number in the log output
+- Use multi-cursor template when no text is selected
+- Automatically maintain proper indentation
 
-## 사용법
+## Usage
 
-1. 코드에서 로깅하고 싶은 변수나 텍스트를 선택합니다.
-2. 단축키 `Alt+L`(기본값)을 누릅니다.
-3. 선택한 변수에 대한 console.log 문이 현재 라인 아래에 자동으로 삽입됩니다.
+1. Select the variable or text you want to log in your code.
+2. Press the shortcut key `Alt+L` (default).
+3. A console.log statement for the selected variable will be automatically inserted below the current line.
 
-## 예시
+## Examples
 
-변수 `userName`을 선택하고 단축키를 누르면:
+When you select the variable `userName` and press the shortcut:
 
 ```javascript
 const userName = "John";
 console.log('fileName.js:2 | userName : ', userName);
 ```
 
-선택 없이 단축키를 누르면:
+When you press the shortcut without selecting anything:
 ```javascript
 console.log('fileName.js:5 | ', );
 ```
-위 상태에서 멀티 커서가 활성화되어 원하는 텍스트를 입력할 수 있습니다.
+In this state, multi-cursors are activated, allowing you to type text at label and value positions simultaneously.
 
-## 설치
+## Installation
 
-1. JetBrains IDE의 플러그인 마켓플레이스에서 "Quick Log"를 검색합니다.
-2. 설치 버튼을 클릭합니다.
-3. IDE를 재시작합니다.
+1. Search for "Quick Log" in the JetBrains IDE plugin marketplace.
+2. Click the Install button.
+3. Restart your IDE.
 
-## 설정
+## Configuration
 
-플러그인 단축키는 IDE의 설정에서 변경할 수 있습니다:
+You can change the plugin shortcut in the IDE settings:
 
-1. `Settings/Preferences` > `Tools` > `Quick Log Settings` 메뉴로 이동합니다.
-2. 원하는 단축키 조합을 입력합니다 (예: `ctrl shift L`).
-3. 설정을 저장하고 IDE를 재시작합니다.
+1. Go to `Settings/Preferences` > `Tools` > `Quick Log Settings`.
+2. Enter your desired shortcut combination (e.g., `ctrl shift L`).
+3. Save the settings and restart the IDE.
 
-## 시스템 요구사항
+## System Requirements
 
-- IntelliJ IDEA, WebStorm, PhpStorm, PyCharm 등 JetBrains IDE
-- 242.* 이상 버전 (2024.2 이상)
+- JetBrains IDEs: IntelliJ IDEA, WebStorm, PhpStorm, PyCharm, etc.
+- IDE versions 242.* or higher (2024.2+)
 
-## 기여하기
+## Contributing
 
-버그 리포트나 기능 제안은 GitHub 이슈를 통해 제출해주세요. 풀 리퀘스트도 환영합니다.
+Bug reports and feature requests are welcome through GitHub issues. Pull requests are also appreciated.
 
-## 라이센스
+## License
 
-이 프로젝트는 MIT 라이센스 하에 배포됩니다. 자세한 내용은 [LICENSE](LICENSE) 파일을 참조하세요.
+This project is distributed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## 개발자 정보
+## Developer Information
 
 Made with ❤️ by [0r0loo](https://github.com/0r0loo)
 
-## 변경 이력
+## Changelog
 
-최신 변경 사항은 [CHANGELOG.md](CHANGELOG.md) 파일을 참조하세요.
+For the latest changes, please refer to the [CHANGELOG.md](CHANGELOG.md) file.
+
+## Additional Resources
+
+- [Korean Documentation (한국어 문서)](README_KO.md)
