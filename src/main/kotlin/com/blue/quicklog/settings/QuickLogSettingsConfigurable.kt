@@ -16,22 +16,31 @@ class QuickLogSettingsConfigurable : Configurable {
 
     override fun createComponent(): JComponent {
         settingsComponent = QuickLogSettingsComponent()
+        reset()
         return settingsComponent!!.getComponent()
     }
 
     override fun isModified(): Boolean {
         val settings = QuickLogSettingsState.getInstance()
-        return settingsComponent?.getPreferredShortcutKey() != settings.shortcutKey
+        val component = settingsComponent ?: return false
+        return component.getPreferredShortcutKey() != settings.shortcutKey ||
+               component.getLogTemplate() != settings.logTemplate
     }
 
     override fun apply() {
         val settings = QuickLogSettingsState.getInstance()
-        settings.shortcutKey = settingsComponent?.getPreferredShortcutKey() ?: "alt L"
+        settingsComponent?.let { component ->
+            settings.shortcutKey = component.getPreferredShortcutKey()
+            settings.logTemplate = component.getLogTemplate()
+        }
     }
 
     override fun reset() {
         val settings = QuickLogSettingsState.getInstance()
-        settingsComponent?.setPreferredShortcutKey(settings.shortcutKey)
+        settingsComponent?.let { component ->
+            component.setPreferredShortcutKey(settings.shortcutKey)
+            component.setLogTemplate(settings.logTemplate)
+        }
     }
 
     override fun disposeUIResources() {

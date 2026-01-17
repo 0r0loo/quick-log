@@ -1,6 +1,6 @@
 package com.blue.quicklog.actions
 
-import com.intellij.codeInsight.template.Template
+import com.blue.quicklog.settings.QuickLogSettingsState
 import com.intellij.codeInsight.template.TemplateManager
 import com.intellij.codeInsight.template.impl.ConstantNode
 import com.intellij.openapi.actionSystem.AnAction
@@ -129,15 +129,20 @@ class QuickLogAction: AnAction() {
     }
 
     /**
-     * 파일명, 라인 번호, 선택된 텍스트, 들여쓰기 정보를 기반으로 console.log 문을 생성합니다.
+     * 설정에서 템플릿을 가져와서 변수를 치환하여 로그 문을 생성합니다.
      */
     private fun createLogStatement(fileName: String, lineNumber: Int, selectedText: String, indentation: String): String {
-        return "\n${indentation}console.log('$fileName:$lineNumber | $selectedText : ', $selectedText);"
+        val template = QuickLogSettingsState.getInstance().logTemplate
+        val logContent = template
+            .replace("\${file}", fileName)
+            .replace("\${line}", lineNumber.toString())
+            .replace("\${var}", selectedText)
+        return "\n${indentation}$logContent"
     }
 
     /**
      * Live Template 방식으로 console.log를 삽입합니다.
-     * 한 곳에서 변수명을 입력하면 다른 곳에도 자동으로 복사됩니다.
+     * 템플릿에서 ${var} 위치를 찾아서 첫 번째는 편집 가능하게, 나머지는 자동 복사되게 합니다.
      * Tab으로 다음 위치로 이동, Enter로 완료됩니다.
      */
     private fun insertTemplateLog(editor: Editor, project: Project, fileName: String, lineNumber: Int, indentation: String) {
@@ -149,16 +154,48 @@ class QuickLogAction: AnAction() {
         // 먼저 커서를 라인 끝으로 이동
         caretModel.moveToOffset(lineEndOffset)
 
+        // 설정에서 템플릿 가져오기
+        val templateStr = QuickLogSettingsState.getInstance().logTemplate
+
+        // 템플릿에서 ${file}, ${line} 먼저 치환
+        val processedTemplate = templateStr
+            .replace("\${file}", fileName)
+            .replace("\${line}", lineNumber.toString())
+
         // Live Template 생성
         val templateManager = TemplateManager.getInstance(project)
         val template = templateManager.createTemplate("", "")
 
-        // 템플릿 구성: \n{indentation}console.log('{fileName}:{lineNumber} | {VAR} : ', {VAR});
-        template.addTextSegment("\n${indentation}console.log('$fileName:$lineNumber | ")
-        template.addVariable("VAR", ConstantNode(""), true)  // 첫 번째 변수 위치 (편집 가능)
-        template.addTextSegment(" : ', ")
-        template.addVariableSegment("VAR")  // 두 번째 변수 위치 (자동 복사)
-        template.addTextSegment(");")
+        // 템플릿 구성: \n{indentation} + 처리된 템플릿
+        template.addTextSegment("\n$indentation")
+
+        // ${var} 위치를 찾아서 처리
+        var isFirstVar = true
+        var remaining = processedTemplate
+
+        while (remaining.contains("\${var}")) {
+            val index = remaining.indexOf("\${var}")
+            // ${var} 앞부분 추가
+            if (index > 0) {
+                template.addTextSegment(remaining.substring(0, index))
+            }
+
+            // 변수 추가
+            if (isFirstVar) {
+                template.addVariable("VAR", ConstantNode(""), true)  // 첫 번째 변수 위치 (편집 가능)
+                isFirstVar = false
+            } else {
+                template.addVariableSegment("VAR")  // 이후 변수 위치 (자동 복사)
+            }
+
+            remaining = remaining.substring(index + "\${var}".length)
+        }
+
+        // 남은 부분 추가
+        if (remaining.isNotEmpty()) {
+            template.addTextSegment(remaining)
+        }
+
         template.addEndVariable()  // Tab 후 커서 최종 위치
 
         // 템플릿 시작

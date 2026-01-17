@@ -16,14 +16,17 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 )
 class QuickLogSettingsState : PersistentStateComponent<QuickLogSettingsState> {
     var shortcutKey: String = "alt L"
+    var logTemplate: String = DEFAULT_LOG_TEMPLATE
+
+    companion object {
+        const val DEFAULT_LOG_TEMPLATE = "console.log('\${file}:\${line} | \${var} : ', \${var});"
+
+        fun getInstance(): QuickLogSettingsState = ApplicationManager.getApplication().getService(QuickLogSettingsState::class.java)
+    }
 
     override fun getState(): QuickLogSettingsState = this
 
     override fun loadState(state: QuickLogSettingsState) {
         XmlSerializerUtil.copyBean(state, this)
-    }
-
-    companion object {
-        fun getInstance(): QuickLogSettingsState = ApplicationManager.getApplication().getService(QuickLogSettingsState::class.java)
     }
 }
