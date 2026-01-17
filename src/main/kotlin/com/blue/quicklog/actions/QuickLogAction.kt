@@ -44,10 +44,59 @@ class QuickLogAction: AnAction() {
     }
 
     /**
-     * 에디터에서 선택된 텍스트를 가져옵니다. 선택된 텍스트가 없으면 "undefined"를 반환합니다.
+     * 에디터에서 선택된 텍스트를 가져옵니다.
+     * 선택된 텍스트가 없으면 커서 위치의 단어를 가져옵니다.
+     * 둘 다 없으면 "undefined"를 반환합니다.
      */
     private fun getSelectedText(editor: Editor): String {
-        return editor.selectionModel.selectedText ?: "undefined"
+        // 1. 선택된 텍스트가 있으면 반환
+        editor.selectionModel.selectedText?.let { return it }
+
+        // 2. 커서 위치의 단어 감지
+        getWordAtCaret(editor)?.let { return it }
+
+        // 3. 둘 다 없으면 undefined
+        return "undefined"
+    }
+
+    /**
+     * 커서 위치의 단어를 가져옵니다. (변수명 등)
+     */
+    private fun getWordAtCaret(editor: Editor): String? {
+        val document = editor.document
+        val caretOffset = editor.caretModel.offset
+        val text = document.text
+
+        if (caretOffset >= text.length) return null
+
+        // 현재 위치 또는 바로 앞 문자가 단어 문자인지 확인
+        val charAtCaret = if (caretOffset < text.length) text[caretOffset] else ' '
+        val charBefore = if (caretOffset > 0) text[caretOffset - 1] else ' '
+
+        if (!isWordChar(charAtCaret) && !isWordChar(charBefore)) return null
+
+        // 단어 시작 위치 찾기
+        var start = caretOffset
+        while (start > 0 && isWordChar(text[start - 1])) {
+            start--
+        }
+
+        // 단어 끝 위치 찾기
+        var end = caretOffset
+        while (end < text.length && isWordChar(text[end])) {
+            end++
+        }
+
+        if (start == end) return null
+
+        return text.substring(start, end)
+    }
+
+    /**
+     * 단어를 구성하는 문자인지 확인 (영문, 숫자, _, $)
+     */
+    private fun isWordChar(char: Char): Boolean {
+        return char.isLetterOrDigit() || char == '_' || char == '$'
     }
 
     /**
