@@ -24,5 +24,11 @@
                 description="Insert styled console.log for selected variable">
             <keyboard-shortcut keymap="$default" first-keystroke="alt L"/>
         </action>
+        <action id="com.blue.quicklog.actions.QuickLogDeleteAction"
+                class="com.blue.quicklog.actions.QuickLogDeleteAction"
+                text="Quick Log Delete"
+                description="Delete all Quick Log console.log statements in current file">
+            <keyboard-shortcut keymap="$default" first-keystroke="alt shift L"/>
+        </action>
     </actions>
 </idea-plugin>
