@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+## [0.0.2] - 2026-01-18
+
+### Changed
+
+- Remove `untilBuild` constraint to support all future IDE versions (including WebStorm 2025.3+)
+
 ## [2.1.0] - 2025-03-28
 
 ### Added
