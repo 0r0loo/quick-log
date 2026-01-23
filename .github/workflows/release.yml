@@ -18,6 +18,15 @@ jobs:
       pull-requests: write
     steps:
 
+      # Free up disk space on the runner
+      - name: Free Disk Space
+        run: |
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /opt/hostedtoolcache/CodeQL
+          sudo docker image prune --all --force
+
       # Check out the current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
